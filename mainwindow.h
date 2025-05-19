@@ -1,7 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "cpumonitor.h"
+
+#include "systemmonitor.h"
 
 #include <QLabel>
 #include <QMainWindow>
@@ -19,11 +20,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private slots:
     void updateCpuLoad(double load);
-
 private:
     Ui::MainWindow *ui;
-    QLabel *cpuLabel;
-    std::unique_ptr<CpuMonitor> cpuMonitor;
+    std::unique_ptr<SystemMonitor> systemMonitor;
 };
 #endif // MAINWINDOW_H

@@ -1,15 +1,15 @@
-#include "cpumonitorfactory.h"
 #include "mainwindow.h"
+#include "systemmonitorfactory.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    cpuMonitor = CpuMonitorFactory::createCpuMonitor(this);
-    connect(cpuMonitor.get(), &CpuMonitor::cpuLoadUpdate, this, &MainWindow::updateCpuLoad);
+    systemMonitor = SystemMonitorFactory::createMonitor(this);
+    connect(systemMonitor.get(), &SystemMonitor::valueUpdated, this, &MainWindow::updateCpuLoad);
 
-    cpuMonitor->startMonitoring();
+    systemMonitor->startMonitoring();
 
 }
 

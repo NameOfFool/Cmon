@@ -11,11 +11,15 @@ qt_add_executable(Cmon
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-    cpumonitor.h
-    cpumonitor_linux.h
-    cpumonitorfactory.h
-    cpumonitorfactory.cpp
-    cpumonitor_linux.cpp
+    systemmonitor.h systemmonitor.cpp
+    linuxsystemmonitor.h linuxsystemmonitor.cpp
+    systemmonitorfactory.h systemmonitorfactory.cpp
+
+
+
+
+
+
 )
 
 qt_add_translations(
