@@ -6,6 +6,9 @@
 
 #include <QLabel>
 #include <QMainWindow>
+#include <QChartView>
+#include <QLineSeries>
+#include <memory>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,6 +27,9 @@ private slots:
     void updateCpuLoad(double load);
 private:
     Ui::MainWindow *ui;
+    int counter = 0;
     std::unique_ptr<SystemMonitor> systemMonitor;
+    QChartView *chartView;
+    QLineSeries *series;
 };
 #endif // MAINWINDOW_H

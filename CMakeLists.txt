@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.19)
 project(Cmon LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools Charts)
 
 qt_standard_project_setup()
 
@@ -21,7 +21,6 @@ qt_add_executable(Cmon
 
 
 )
-
 qt_add_translations(
     TARGETS Cmon
     TS_FILES Cmon_ru_RU.ts
@@ -31,6 +30,7 @@ target_link_libraries(Cmon
     PRIVATE
         Qt::Core
         Qt::Widgets
+        Qt::Charts
 )
 
 include(GNUInstallDirs)

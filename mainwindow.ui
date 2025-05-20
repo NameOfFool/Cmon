@@ -14,21 +14,11 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>40</y>
-      <width>256</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="cpuLoadLabel">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>250</y>
+      <x>100</x>
+      <y>240</y>
       <width>256</width>
       <height>20</height>
      </rect>
@@ -40,6 +30,17 @@
      <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>0</y>
+      <width>411</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout"/>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -50,6 +51,12 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuOverview">
+    <property name="title">
+     <string>Overview</string>
+    </property>
+   </widget>
+   <addaction name="menuOverview"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
