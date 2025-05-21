@@ -3,11 +3,9 @@
 
 
 #include "systemmonitor.h"
-
+#include "monitorplot.h"
 #include <QLabel>
 #include <QMainWindow>
-#include <QChartView>
-#include <QLineSeries>
 #include <memory>
 
 QT_BEGIN_NAMESPACE
@@ -23,13 +21,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-private slots:
-    void updateCpuLoad(double load);
 private:
-    Ui::MainWindow *ui;
-    int counter = 0;
+    Ui::MainWindow *ui;    
     std::unique_ptr<SystemMonitor> systemMonitor;
-    QChartView *chartView;
-    QLineSeries *series;
+    MonitorPlot *monitorPlot;
 };
 #endif // MAINWINDOW_H
