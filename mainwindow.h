@@ -4,6 +4,7 @@
 
 #include "systemmonitor.h"
 #include "monitorplot.h"
+#include "cpusystemmonitor.h"
 #include <QLabel>
 #include <QMainWindow>
 #include <QScopedPointer>
@@ -23,7 +24,7 @@ public:
     ~MainWindow();
 private:
     Ui::MainWindow *ui;    
-    QScopedPointer<SystemMonitor> systemMonitor;
+    QScopedPointer<CpuSystemMonitor> systemMonitor;
     MonitorPlot *monitorPlot;
 };
 #endif // MAINWINDOW_H

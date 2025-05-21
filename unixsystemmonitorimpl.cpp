@@ -1,15 +1,12 @@
-#include "linuxsystemmonitor.h"
-
+#include "unixsystemmonitorimpl.h"
 #include <QFile>
+#include <QIODevice>
 #include <QTextStream>
+#include <qtypes.h>
 
-LinuxSystemMonitor::LinuxSystemMonitor(QObject *parent)
-    : SystemMonitor{parent}
-{
+UnixSystemMonitorImpl::UnixSystemMonitorImpl() {}
 
-}
-LinuxSystemMonitor::~LinuxSystemMonitor(){}
-double LinuxSystemMonitor::fetchValue()
+double SystemMonitorImpl::getCpuUsage()
 {
     static qint64 previousIdle = 0, previousTotal = 0;
 
@@ -44,3 +41,4 @@ double LinuxSystemMonitor::fetchValue()
 
     return 100.0 * (deltaTotal - deltaIdle) / deltaTotal;
 }
+

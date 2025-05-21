@@ -2,18 +2,19 @@
 #include <QObject>
 #include <QTimer>
 #include <QSharedPointer>
+#include "systemmonitorimpl.h"
 
 class SystemMonitor : public QObject
 {
     Q_OBJECT
 public:
-    explicit SystemMonitor(QObject *parent = nullptr);
+    explicit SystemMonitor(QObject *parent = nullptr, SystemMonitorImpl *_impl =nullptr);
     virtual ~SystemMonitor() = default;
 
     double currentUsage() const { return m_currentUsage; }
     bool isMonitoring() const { return m_isMonitoring; }
 
-    static QScopedPointer<SystemMonitor> create(QObject *parent = nullptr);
+
 public slots:
     void startMonitoring(int intervalMs = 1000);
     void stopMonitoring();
@@ -23,6 +24,7 @@ signals:
     void monitoringStopped();
 protected:
     virtual double fetchValue() = 0;
+    QScopedPointer<SystemMonitorImpl> impl;
 private slots:
     void updateValue();
 private:

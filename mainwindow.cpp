@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 #include <math.h>
 #include <qcustomplot.h>
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow), systemMonitor(SystemMonitor::create(this))
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow), systemMonitor(CpuSystemMonitor::createMonitor(this))
 {
     ui->setupUi(this);
     monitorPlot = new MonitorPlot(ui->cpuPlot);

@@ -1,9 +1,9 @@
 #include "systemmonitor.h"
 
-#include "linuxsystemmonitor.h"
 
-SystemMonitor::SystemMonitor(QObject *parent)
-    : QObject{parent}
+
+SystemMonitor::SystemMonitor(QObject *parent, SystemMonitorImpl *_impl)
+    : QObject{parent}, impl(_impl)
 {
     connect(&m_timer, &QTimer::timeout, this, &SystemMonitor::updateValue);
 }
@@ -28,8 +28,3 @@ void SystemMonitor::updateValue()
     m_currentUsage = fetchValue();
     emit valueUpdated(m_currentUsage);
 }
-QScopedPointer<SystemMonitor> SystemMonitor::create(QObject *parent)
-{
-    return QScopedPointer<SystemMonitor>(new LinuxSystemMonitor(parent));
-}
-
