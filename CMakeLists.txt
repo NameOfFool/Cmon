@@ -22,7 +22,7 @@ qt_add_executable(Cmon
     mainwindow.ui
     systemmonitor.h systemmonitor.cpp
     linuxsystemmonitor.h linuxsystemmonitor.cpp
-    systemmonitorfactory.h systemmonitorfactory.cpp
+
     monitorplot.h monitorplot.cpp
 )
 qt_add_translations(

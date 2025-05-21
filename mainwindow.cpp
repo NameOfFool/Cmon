@@ -1,13 +1,11 @@
 #include "mainwindow.h"
-#include "systemmonitorfactory.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include <math.h>
 #include <qcustomplot.h>
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow), systemMonitor(SystemMonitor::create(this))
 {
     ui->setupUi(this);
-    systemMonitor = SystemMonitorFactory::createMonitor(this);
     monitorPlot = new MonitorPlot(ui->cpuPlot);
     monitorPlot->setGeometry(ui->cpuPlot->rect());
 

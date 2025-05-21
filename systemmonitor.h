@@ -1,6 +1,7 @@
 #pragma once
 #include <QObject>
 #include <QTimer>
+#include <QSharedPointer>
 
 class SystemMonitor : public QObject
 {
@@ -8,8 +9,11 @@ class SystemMonitor : public QObject
 public:
     explicit SystemMonitor(QObject *parent = nullptr);
     virtual ~SystemMonitor() = default;
+
     double currentUsage() const { return m_currentUsage; }
     bool isMonitoring() const { return m_isMonitoring; }
+
+    static QScopedPointer<SystemMonitor> create(QObject *parent = nullptr);
 public slots:
     void startMonitoring(int intervalMs = 1000);
     void stopMonitoring();

@@ -17,10 +17,10 @@
    <widget class="QWidget" name="cpuPlot" native="true">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>70</y>
-      <width>311</width>
-      <height>131</height>
+      <x>120</x>
+      <y>40</y>
+      <width>541</width>
+      <height>161</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -28,6 +28,9 @@
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>
@@ -37,7 +40,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOverview">

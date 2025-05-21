@@ -1,5 +1,7 @@
 #include "systemmonitor.h"
 
+#include "linuxsystemmonitor.h"
+
 SystemMonitor::SystemMonitor(QObject *parent)
     : QObject{parent}
 {
@@ -25,5 +27,9 @@ void SystemMonitor::updateValue()
 {
     m_currentUsage = fetchValue();
     emit valueUpdated(m_currentUsage);
+}
+QScopedPointer<SystemMonitor> SystemMonitor::create(QObject *parent)
+{
+    return QScopedPointer<SystemMonitor>(new LinuxSystemMonitor(parent));
 }
 

@@ -6,7 +6,7 @@
 #include "monitorplot.h"
 #include <QLabel>
 #include <QMainWindow>
-#include <memory>
+#include <QScopedPointer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,7 +23,7 @@ public:
     ~MainWindow();
 private:
     Ui::MainWindow *ui;    
-    std::unique_ptr<SystemMonitor> systemMonitor;
+    QScopedPointer<SystemMonitor> systemMonitor;
     MonitorPlot *monitorPlot;
 };
 #endif // MAINWINDOW_H
