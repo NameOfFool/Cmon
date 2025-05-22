@@ -2,12 +2,13 @@
 #define MAINWINDOW_H
 
 
-#include "systemmonitor.h"
-#include "monitorplot.h"
 #include "cpusystemmonitor.h"
+#include "monitorplot.h"
+#include "ramsystemmonitor.h"
 #include <QLabel>
 #include <QMainWindow>
 #include <QScopedPointer>
+#include <QSharedPointer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,8 +24,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private:
-    Ui::MainWindow *ui;    
-    QScopedPointer<CpuSystemMonitor> systemMonitor;
-    MonitorPlot *monitorPlot;
+    Ui::MainWindow *ui;
+    QScopedPointer<CpuSystemMonitor> cpuSystemMonitor;
+    QScopedPointer<RamSystemMonitor> ramSystemMonitor;
+
+    QSharedPointer<MonitorPlot> cpuMonitorPlot;
+    QSharedPointer<MonitorPlot> ramMonitorPlot;
 };
 #endif // MAINWINDOW_H

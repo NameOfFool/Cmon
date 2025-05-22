@@ -1,12 +1,12 @@
-#ifndef UNIXSYSTEMMONITORIMPL_H
-#define UNIXSYSTEMMONITORIMPL_H
+#pragma once
 
 #include "systemmonitorimpl.h"
 
 class UnixSystemMonitorImpl : public SystemMonitorImpl
 {
 public:
-    UnixSystemMonitorImpl();
+    explicit UnixSystemMonitorImpl();
+    double getCpuUsage() override;
+    double getRamUsage() override;
 };
 
-#endif // UNIXSYSTEMMONITORIMPL_H

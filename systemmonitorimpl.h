@@ -3,8 +3,7 @@
 class SystemMonitorImpl
 {
 public:
-    SystemMonitorImpl();
-    virtual double getCpuUsage();
+    explicit SystemMonitorImpl(){}
+    virtual double getCpuUsage() = 0;
+    virtual double getRamUsage() = 0;
 };
-
-

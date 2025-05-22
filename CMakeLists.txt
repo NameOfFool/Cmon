@@ -23,9 +23,11 @@ qt_add_executable(Cmon
     systemmonitor.h systemmonitor.cpp
 
     monitorplot.h monitorplot.cpp
-    systemmonitorimpl.h systemmonitorimpl.cpp
+
     unixsystemmonitorimpl.h unixsystemmonitorimpl.cpp
     cpusystemmonitor.h cpusystemmonitor.cpp
+    systemmonitorimpl.h
+    ramsystemmonitor.h ramsystemmonitor.cpp
 )
 qt_add_translations(
     TARGETS Cmon
