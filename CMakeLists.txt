@@ -16,18 +16,16 @@ qt_standard_project_setup()
 
 qt_add_executable(Cmon
     WIN32 MACOSX_BUNDLE
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
+    src/main.cpp
+    src/mainwindow.cpp
+    include/mainwindow.h
     mainwindow.ui
-    systemmonitor.h systemmonitor.cpp
-
-    monitorplot.h monitorplot.cpp
-
-    unixsystemmonitorimpl.h unixsystemmonitorimpl.cpp
-    cpusystemmonitor.h cpusystemmonitor.cpp
-    systemmonitorimpl.h
-    ramsystemmonitor.h ramsystemmonitor.cpp
+    include/systemmonitor.h src/systemmonitor.cpp
+    include/monitorplot.h src/monitorplot.cpp
+    include/unixsystemmonitorimpl.h src/unixsystemmonitorimpl.cpp
+    include/cpusystemmonitor.h src/cpusystemmonitor.cpp
+    include/systemmonitorimpl.h
+    include/ramsystemmonitor.h src/ramsystemmonitor.cpp
 )
 qt_add_translations(
     TARGETS Cmon
