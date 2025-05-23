@@ -25,8 +25,6 @@ public:
     ~MainWindow();
 private:
     Ui::MainWindow *ui;
-    QScopedPointer<CpuSystemMonitor> cpuSystemMonitor;
-    QScopedPointer<RamSystemMonitor> ramSystemMonitor;
 
     QSharedPointer<MonitorPlot> cpuMonitorPlot;
     QSharedPointer<MonitorPlot> ramMonitorPlot;
