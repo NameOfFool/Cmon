@@ -9,7 +9,7 @@ double CpuSystemMonitor::fetchValue()
 {
     return impl->getCpuUsage();
 }
-QScopedPointer<CpuSystemMonitor> CpuSystemMonitor::createMonitor(QObject *parent)
+std::unique_ptr<CpuSystemMonitor> CpuSystemMonitor::createMonitor(QObject *parent)
 {
-    return QScopedPointer<CpuSystemMonitor>(new CpuSystemMonitor(parent, new UnixSystemMonitorImpl()));
+    return std::unique_ptr<CpuSystemMonitor>(new CpuSystemMonitor(parent, new UnixSystemMonitorImpl()));
 }

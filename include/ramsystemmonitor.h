@@ -6,6 +6,6 @@ class RamSystemMonitor : public SystemMonitor
 public:
     explicit RamSystemMonitor(QObject *parent = nullptr, SystemMonitorImpl *_impl = nullptr);
     double fetchValue() override;
-    static QScopedPointer<RamSystemMonitor> createMonitor(QObject *parent);
+    static std::unique_ptr<RamSystemMonitor> createMonitor(QObject *parent = nullptr);
 };
 

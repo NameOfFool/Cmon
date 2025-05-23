@@ -4,9 +4,7 @@
 #include "ramsystemmonitor.h"
 #include <math.h>
 #include <qcustomplot.h>
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow),
-    cpuSystemMonitor(CpuSystemMonitor::createMonitor(this)),
-    ramSystemMonitor(RamSystemMonitor::createMonitor(this))
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -16,16 +14,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->centralwidget->setAutoFillBackground(true);
     ui->centralwidget->setPalette(pal);
 
-    cpuMonitorPlot = QSharedPointer<MonitorPlot>(new MonitorPlot(ui->cpuPlot));
-    ramMonitorPlot = QSharedPointer<MonitorPlot>(new MonitorPlot(ui->ramPlot));
+    cpuMonitorPlot = QSharedPointer<MonitorPlot>(new MonitorPlot(ui->cpuPlot, CpuSystemMonitor::createMonitor()));
+    ramMonitorPlot = QSharedPointer<MonitorPlot>(new MonitorPlot(ui->ramPlot, RamSystemMonitor::createMonitor()));
     cpuMonitorPlot->setGeometry(ui->cpuPlot->rect());
     ramMonitorPlot->setGeometry(ui->ramPlot->rect());
 
-    connect(cpuSystemMonitor.get(), &SystemMonitor::valueUpdated, cpuMonitorPlot.get(), &MonitorPlot::updatePlot);
-    connect(ramSystemMonitor.get(), &SystemMonitor::valueUpdated, ramMonitorPlot.get(), &MonitorPlot::updatePlot);
-
-    cpuSystemMonitor->startMonitoring();
-    ramSystemMonitor->startMonitoring();
 }
 
 MainWindow::~MainWindow()

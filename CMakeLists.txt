@@ -19,7 +19,7 @@ qt_add_executable(Cmon
     src/main.cpp
     src/mainwindow.cpp
     include/mainwindow.h
-    mainwindow.ui
+    src/mainwindow.ui
     include/systemmonitor.h src/systemmonitor.cpp
     include/monitorplot.h src/monitorplot.cpp
     include/unixsystemmonitorimpl.h src/unixsystemmonitorimpl.cpp
@@ -33,6 +33,7 @@ qt_add_translations(
 )
 target_include_directories(qcustomplot PUBLIC
   "${qcustomplot_SOURCE_DIR}"
+  "include"
   )
 
 set(Qt6Libs Core Widgets PrintSupport)

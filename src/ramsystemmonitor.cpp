@@ -9,7 +9,7 @@ double RamSystemMonitor::fetchValue()
 {
     return impl->getRamUsage();
 }
-QScopedPointer<RamSystemMonitor> RamSystemMonitor::createMonitor(QObject *parent)
+std::unique_ptr<RamSystemMonitor> RamSystemMonitor::createMonitor(QObject *parent)
 {
-    return QScopedPointer<RamSystemMonitor>(new RamSystemMonitor(parent, new UnixSystemMonitorImpl()));
+    return std::unique_ptr<RamSystemMonitor>(new RamSystemMonitor(parent, new UnixSystemMonitorImpl()));
 }

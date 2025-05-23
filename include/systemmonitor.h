@@ -1,7 +1,7 @@
 #pragma once
 #include <QObject>
 #include <QTimer>
-#include <QSharedPointer>
+#include <QScopedPointer>
 #include "systemmonitorimpl.h"
 
 class SystemMonitor : public QObject
