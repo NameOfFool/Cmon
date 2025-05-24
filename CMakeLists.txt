@@ -1,8 +1,27 @@
 cmake_minimum_required(VERSION 3.19)
 project(Cmon LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(FetchContent)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools Charts PrintSupport)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+if(MSVC)
+    add_compile_options(/Zc:__cplusplus)  # Важно для Qt + MSVC
+endif()
+
+#TODO this is tmp solution for msys2 system
+if(WIN32)
+  set(Qt6_DIR "C:/msys64/mingw64/lib/cmake/Qt6")
+endif()
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Charts PrintSupport)
+
+
+file(GLOB SOURCES "src/*.cpp")
+file(GLOB HEADERS "include/*.h")
+
 FetchContent_Declare(qcustomplot
   URL https://www.qcustomplot.com/release/2.1.1/QCustomPlot-source.tar.gz
 )
@@ -14,18 +33,11 @@ add_library(qcustomplot
 
 qt_standard_project_setup()
 
+
 qt_add_executable(Cmon
     WIN32 MACOSX_BUNDLE
-    src/main.cpp
-    src/mainwindow.cpp
-    include/mainwindow.h
-    src/mainwindow.ui
-    include/systemmonitor.h src/systemmonitor.cpp
-    include/monitorplot.h src/monitorplot.cpp
-    include/unixsystemmonitorimpl.h src/unixsystemmonitorimpl.cpp
-    include/cpusystemmonitor.h src/cpusystemmonitor.cpp
-    include/systemmonitorimpl.h
-    include/ramsystemmonitor.h src/ramsystemmonitor.cpp
+    ${SOURCES}
+    ${HEADERS}
 )
 qt_add_translations(
     TARGETS Cmon
@@ -35,7 +47,6 @@ target_include_directories(qcustomplot PUBLIC
   "${qcustomplot_SOURCE_DIR}"
   "include"
   )
-
 set(Qt6Libs Core Widgets PrintSupport)
 foreach(i IN LISTS Qt6Libs)
   target_link_libraries(qcustomplot PRIVATE
@@ -46,11 +57,11 @@ set_target_properties(qcustomplot PROPERTIES
   AUTOMOC ON
   )
 
-target_link_libraries(Cmon
+target_link_libraries(${CMAKE_PROJECT_NAME}
     PRIVATE
-        Qt::Core
-        Qt::Widgets
-        Qt::Charts
+        Qt6::Core
+        Qt6::Widgets
+        Qt6::Charts
         qcustomplot
 )
 

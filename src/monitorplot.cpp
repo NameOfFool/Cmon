@@ -3,7 +3,10 @@
 #include <QColor>
 
 MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemMonitor):
-    QCustomPlot(parent), m_XAxis(DATA_SIZE), m_YAxis(DATA_SIZE), m_systemMonitor(std::move(systemMonitor))
+    QCustomPlot(parent),
+    m_XAxis(DATA_SIZE),
+    m_YAxis(DATA_SIZE), 
+    m_systemMonitor(std::move(systemMonitor))
 {
     addGraph();
 

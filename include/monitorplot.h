@@ -10,7 +10,7 @@ class MonitorPlot : public QCustomPlot
 {
     Q_OBJECT
 public:
-    explicit MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemMonitor);
+    explicit MonitorPlot(QWidget *parent = nullptr, std::unique_ptr<SystemMonitor> systemMonitor = nullptr);
 public slots:
     void updatePlot(double load);
 private:
