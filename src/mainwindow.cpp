@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->centralwidget->setAutoFillBackground(true);
     ui->centralwidget->setPalette(pal);
 
-    cpuMonitorPlot = QSharedPointer<MonitorPlot>(new MonitorPlot(ui->cpuPlot, CpuSystemMonitor::createMonitor()));
-    ramMonitorPlot = QSharedPointer<MonitorPlot>(new MonitorPlot(ui->ramPlot, RamSystemMonitor::createMonitor()));
+    cpuMonitorPlot = QSharedPointer<MonitorPlot>(new MonitorPlot(ui->cpuPlot, CpuSystemMonitor::createMonitor(), tr("Использование CPU")));
+    ramMonitorPlot = QSharedPointer<MonitorPlot>(new MonitorPlot(ui->ramPlot, RamSystemMonitor::createMonitor(), tr("Использование RAM")));
     cpuMonitorPlot->setGeometry(ui->cpuPlot->rect());
     ramMonitorPlot->setGeometry(ui->ramPlot->rect());
 

@@ -2,7 +2,7 @@
 #include <QPen>
 #include <QColor>
 
-MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemMonitor):
+MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemMonitor, QString title):
     QCustomPlot(parent),
     m_XAxis(DATA_SIZE),
     m_YAxis(DATA_SIZE), 
@@ -26,7 +26,7 @@ MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemM
     yAxis->grid()->setPen(QPen(QColor(200, 200, 200), 1, Qt::DotLine));
 
     plotLayout()->insertRow(0);
-    plotLayout()->addElement(0, 0, new QCPTextElement(this, "Загрузка CPU", QFont("Fira Code", 14)));
+    plotLayout()->addElement(0, 0, new QCPTextElement(this, title, QFont("Fira Code", 14)));
 
     m_systemMonitor->startMonitoring();
 }

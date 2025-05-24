@@ -19,7 +19,7 @@ endif()
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Charts PrintSupport)
 
 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/*.ui")
 file(GLOB HEADERS "include/*.h")
 if(WIN32)
   file(GLOB OS_SOURCES "src/windows/*.cpp")
