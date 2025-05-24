@@ -21,6 +21,13 @@ find_package(Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Charts PrintSupp
 
 file(GLOB SOURCES "src/*.cpp")
 file(GLOB HEADERS "include/*.h")
+if(WIN32)
+  file(GLOB OS_SOURCES "src/windows/*.cpp")
+  file(GLOB OS_HEADERS "include/windows/*.h")
+elseif(UNIX)
+  file(GLOB OS_SOURCES "src/linux/*.cpp")
+  file(GLOB OS_HEADERS "include/linux/*.h")
+endif()
 
 FetchContent_Declare(qcustomplot
   URL https://www.qcustomplot.com/release/2.1.1/QCustomPlot-source.tar.gz
@@ -38,6 +45,8 @@ qt_add_executable(Cmon
     WIN32 MACOSX_BUNDLE
     ${SOURCES}
     ${HEADERS}
+    ${OS_SOURCES}
+    ${OS_HEADERS}
 )
 qt_add_translations(
     TARGETS Cmon
