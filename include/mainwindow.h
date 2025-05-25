@@ -26,7 +26,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    QSharedPointer<MonitorPlot> cpuMonitorPlot;
-    QSharedPointer<MonitorPlot> ramMonitorPlot;
+    MonitorPlot *cpuMonitorPlot;
+    MonitorPlot *ramMonitorPlot;
 };
 #endif // MAINWINDOW_H
