@@ -5,18 +5,18 @@
 #include "windows/windowssystemmonitorimpl.h"
 #endif
 
-RamSystemMonitor::RamSystemMonitor(QObject *parent, SystemMonitorImpl *_impl)
-    : SystemMonitor(parent, _impl)
+RamSystemMonitor::RamSystemMonitor( SystemMonitorImpl *_impl)
+    : SystemMonitor(_impl)
 {}
 double RamSystemMonitor::fetchValue()
 {
     return impl->getRamUsage();
 }
-std::unique_ptr<RamSystemMonitor> RamSystemMonitor::createMonitor(QObject *parent)
+std::unique_ptr<RamSystemMonitor> RamSystemMonitor::createMonitor()
 {
     #ifdef _WIN32
         return std::unique_ptr<RamSystemMonitor>(new RamSystemMonitor(parent, new WindowsSystemMonitorImpl()));
     #elif defined(__linux__)
-        return std::unique_ptr<RamSystemMonitor>(new RamSystemMonitor(parent, new UnixSystemMonitorImpl()));
+        return std::unique_ptr<RamSystemMonitor>(new RamSystemMonitor(new UnixSystemMonitorImpl()));
     #endif
 }

@@ -5,18 +5,18 @@
 #include "windows/windowssystemmonitorimpl.h"
 #endif
 
-CpuSystemMonitor::CpuSystemMonitor(QObject *parent, SystemMonitorImpl *_impl)
-    : SystemMonitor(parent, _impl)
+CpuSystemMonitor::CpuSystemMonitor(SystemMonitorImpl *_impl)
+    : SystemMonitor(_impl)
 {}
 double CpuSystemMonitor::fetchValue()
 {
     return impl->getCpuUsage();
 }
-std::unique_ptr<CpuSystemMonitor> CpuSystemMonitor::createMonitor(QObject *parent)
+std::unique_ptr<CpuSystemMonitor> CpuSystemMonitor::createMonitor()
 {
     #ifdef _WIN32
-        return std::unique_ptr<CpuSystemMonitor>(new CpuSystemMonitor(parent, new WindowsSystemMonitorImpl()));
+        return std::unique_ptr<CpuSystemMonitor>(new CpuSystemMonitor(new WindowsSystemMonitorImpl()));
     #elif defined(__linux__)
-        return std::unique_ptr<CpuSystemMonitor>(new CpuSystemMonitor(parent, new UnixSystemMonitorImpl()));
+        return std::unique_ptr<CpuSystemMonitor>(new CpuSystemMonitor(new UnixSystemMonitorImpl()));
     #endif
 }

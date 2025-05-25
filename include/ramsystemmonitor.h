@@ -1,11 +1,13 @@
 #pragma once
+
 #include "systemmonitor.h"
+#include <memory>
 
 class RamSystemMonitor : public SystemMonitor
 {
 public:
-    explicit RamSystemMonitor(QObject *parent = nullptr, SystemMonitorImpl *_impl = nullptr);
+    explicit RamSystemMonitor(SystemMonitorImpl *_impl = nullptr);
     double fetchValue() override;
-    static std::unique_ptr<RamSystemMonitor> createMonitor(QObject *parent = nullptr);
+    static std::unique_ptr<RamSystemMonitor> createMonitor();
 };
 
