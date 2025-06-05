@@ -13,7 +13,7 @@ MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemM
     connect(&m_timer, &QTimer::timeout, this, &MonitorPlot::updatePlot);
 
     yAxis->setRange(0, 100);
-    yAxis->setLabel("Нагрузка %");
+    yAxis->setLabel(tr("Usage %"));
     graph(0)->setPen(QPen(Qt::blue, 2));
     graph(0)->setScatterStyle(QCPScatterStyle(
         QCPScatterStyle::ssDot,

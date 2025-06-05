@@ -9,13 +9,14 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 if(MSVC)
-    add_compile_options(/Zc:__cplusplus)  # Важно для Qt + MSVC
+    add_compile_options(/Zc:__cplusplus)  # for Qt + MSVC
 endif()
 
 #TODO this is tmp solution for msys2 system
 if(WIN32)
   set(Qt6_DIR "C:/msys64/mingw64/lib/cmake/Qt6")
 endif()
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS LinguistTools)
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Charts PrintSupport)
 
 
@@ -40,6 +41,8 @@ add_library(qcustomplot
 
 qt_standard_project_setup()
 
+#TRANSLATIONS
+file(GLOB TS_FILES "translations/*.ts")
 
 qt_add_executable(Cmon
     WIN32 MACOSX_BUNDLE
@@ -50,7 +53,8 @@ qt_add_executable(Cmon
 )
 qt_add_translations(
     TARGETS Cmon
-    TS_FILES Cmon_ru_RU.ts
+    TS_FILES ${TS_FILES}
+    QM_FILES_OUTPUT_VARIABLE QM_FILES
 )
 target_include_directories(qcustomplot PUBLIC
   "${qcustomplot_SOURCE_DIR}"
@@ -74,8 +78,8 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         qcustomplot
 )
 
-
 include(GNUInstallDirs)
+
 
 install(TARGETS Cmon
     BUNDLE  DESTINATION .
@@ -83,6 +87,7 @@ install(TARGETS Cmon
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
+install(FILES ${QM_FILES} DESTINATION "translations")
 qt_generate_deploy_app_script(
     TARGET Cmon
     OUTPUT_SCRIPT deploy_script
