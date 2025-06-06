@@ -1,6 +1,8 @@
 #include "monitorplot.h"
 #include <QPen>
 #include <QColor>
+#include <QBrush>
+#include <QString>
 
 MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemMonitor, QString title):
     QCustomPlot(parent),
@@ -8,12 +10,37 @@ MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemM
 {
     addGraph();
 
+    hoverLabel = std::make_unique<QCPItemText>(static_cast<QCustomPlot*>(this));
+    hoverLabel->setVisible(false);
+    hoverLabel->setBrush(QBrush(Qt::white));
+
     xAxis->setVisible(false);
     xAxis->setRange(0, DATA_SIZE);
+
+    setInteractions(QCP::iSelectPlottables);
+
     connect(&m_timer, &QTimer::timeout, this, &MonitorPlot::updatePlot);
+    connect(this, &MonitorPlot::mouseMove, [=](QMouseEvent *event)
+        {
+        double x = this->xAxis->pixelToCoord(event->pos().x());
+        auto it = this->graph(0)->data()->findBegin(x);
+
+        if(it != this->graph(0)->data()->constEnd() && qAbs(it->key - x) < 0.5)
+        {
+            hoverLabel->position->setCoords(it->key, it->value + 14);
+            hoverLabel->setText(QString("Usage: %1").arg(qRound(it->value)));
+            hoverLabel->setVisible(true);
+        }
+        else
+        {
+            hoverLabel->setVisible(false);
+        }
+        this->replot();
+    });
 
     yAxis->setRange(0, 100);
     yAxis->setLabel(tr("Usage %"));
+
     graph(0)->setPen(QPen(Qt::blue, 2));
     graph(0)->setScatterStyle(QCPScatterStyle(
         QCPScatterStyle::ssDot,

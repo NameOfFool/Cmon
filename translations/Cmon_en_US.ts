@@ -7,13 +7,13 @@
         <location filename="../src/mainwindow.ui" line="14"/>
         <location filename="../build/Desktop-Debug/Cmon_autogen/include/ui_mainwindow.h" line="75"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Main Window</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="67"/>
         <location filename="../build/Desktop-Debug/Cmon_autogen/include/ui_mainwindow.h" line="76"/>
         <source>Overview</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Overview</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="17"/>

@@ -1,8 +1,9 @@
 #include "cpusystemmonitor.h"
 
-#include "linux/unixsystemmonitorimpl.h"
 #ifdef _WIN32
 #include "windows/windowssystemmonitorimpl.h"
+#elif defined(__linux__)
+#include "linux/unixsystemmonitorimpl.h"
 #endif
 
 CpuSystemMonitor::CpuSystemMonitor(SystemMonitorImpl *_impl)
