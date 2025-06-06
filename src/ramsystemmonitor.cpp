@@ -15,7 +15,7 @@ double RamSystemMonitor::fetchValue()
 std::unique_ptr<RamSystemMonitor> RamSystemMonitor::createMonitor()
 {
     #ifdef _WIN32
-        return std::unique_ptr<RamSystemMonitor>(new RamSystemMonitor(parent, new WindowsSystemMonitorImpl()));
+        return std::unique_ptr<RamSystemMonitor>(new RamSystemMonitor(new WindowsSystemMonitorImpl()));
     #elif defined(__linux__)
         return std::unique_ptr<RamSystemMonitor>(new RamSystemMonitor(new UnixSystemMonitorImpl()));
     #endif
