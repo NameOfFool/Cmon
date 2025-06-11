@@ -20,7 +20,8 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS LinguistTools)
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Charts PrintSupport)
 
 
-file(GLOB SOURCES "src/*.cpp" "src/*.ui")
+file(GLOB SOURCES "src/*.cpp")
+file(GLOB UI_FILES "src/ui/*.ui")
 file(GLOB HEADERS "include/*.h")
 if(WIN32)
   file(GLOB OS_SOURCES "src/windows/*.cpp")
@@ -51,11 +52,14 @@ qt_add_executable(Cmon
     ${OS_SOURCES}
     ${OS_HEADERS}
 )
+qt_add_ui(Cmon SOURCES ${UI_FILES})
 qt_add_translations(
     TARGETS Cmon
     TS_FILES ${TS_FILES}
     QM_FILES_OUTPUT_VARIABLE QM_FILES
 )
+
+
 target_include_directories(qcustomplot PUBLIC
   "${qcustomplot_SOURCE_DIR}"
   "include"

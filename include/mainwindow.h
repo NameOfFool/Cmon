@@ -1,10 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-
-#include "cpusystemmonitor.h"
 #include "monitorplot.h"
-#include "ramsystemmonitor.h"
 #include <QLabel>
 #include <QMainWindow>
 #include <QScopedPointer>
@@ -21,8 +18,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+private slots:
+    void openSettings();
 private:
     Ui::MainWindow *ui;
 
