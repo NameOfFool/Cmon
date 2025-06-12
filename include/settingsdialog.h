@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::SettingsDialog *ui;
+    void initLangs();
+    void saveSettings();
 };
 
 #endif // SETTINGSDIALOG_H

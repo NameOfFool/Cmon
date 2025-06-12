@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::WindowModality::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -12,6 +15,9 @@
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="ramPlot" native="true">
@@ -76,7 +82,6 @@
    <addaction name="menuOverview"/>
    <addaction name="menuSettings"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionLanguage">
    <property name="text">
     <string>Language</string>

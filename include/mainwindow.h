@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QScopedPointer>
+#include <QTranslator>
 #include <QSharedPointer>
 
 QT_BEGIN_NAMESPACE
@@ -20,6 +21,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+protected:
+    void changeEvent(QEvent * event) override;
 private slots:
     void openSettings();
 private:
@@ -27,5 +30,7 @@ private:
 
     MonitorPlot *cpuMonitorPlot;
     MonitorPlot *ramMonitorPlot;
+
+    QTranslator qtTranslator;
 };
 #endif // MAINWINDOW_H

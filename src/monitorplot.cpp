@@ -6,7 +6,9 @@
 
 MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemMonitor, QString title):
     QCustomPlot(parent),
-    m_systemMonitor(std::move(systemMonitor))
+    m_systemMonitor(std::move(systemMonitor)),
+    m_title(new QCPTextElement(this, title, QFont("Fira Code", 14)))
+
 {
     addGraph();
 
@@ -50,7 +52,8 @@ MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemM
         ));
     yAxis->grid()->setPen(QPen(QColor(200, 200, 200), 1, Qt::DotLine));
     plotLayout()->insertRow(0);
-    plotLayout()->addElement(0, 0, new QCPTextElement(this, title, QFont("Fira Code", 14)));
+    plotLayout()->addElement(0, 0, m_title.get());
+
 
     m_timer.start(1000);
 }
@@ -74,4 +77,9 @@ void MonitorPlot::updatePlot()
         xAxis->setRange(m_seconds - DATA_SIZE, m_seconds);
 
     replot();
+}
+
+void MonitorPlot::updateTranlation(QString title)
+{
+    m_title->setText(title);
 }

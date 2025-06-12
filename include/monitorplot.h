@@ -11,6 +11,7 @@ class MonitorPlot : public QCustomPlot
     Q_OBJECT
 public:
     explicit MonitorPlot(QWidget *parent = nullptr, std::unique_ptr<SystemMonitor> systemMonitor = nullptr, QString title = "");
+    void updateTranlation(QString title);
 public slots:
     void updatePlot();
 private:
@@ -18,6 +19,7 @@ private:
     std::unique_ptr<SystemMonitor> m_systemMonitor;
     static constexpr int DATA_SIZE = 25;
     std::unique_ptr<QCPItemText> hoverLabel;
+    std::shared_ptr<QCPTextElement> m_title;
     QTimer m_timer;
 };
 
