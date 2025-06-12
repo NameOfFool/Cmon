@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>611</width>
-    <height>486</height>
+    <width>770</width>
+    <height>602</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,6 +32,12 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="mainTab">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <attribute name="title">
         <string>Main</string>
        </attribute>

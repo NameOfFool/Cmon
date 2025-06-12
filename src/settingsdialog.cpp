@@ -34,3 +34,9 @@ void SettingsDialog::saveSettings()
     settings.setValue("Language", ui->languageComboBox->currentData());
     accept();
 }
+void SettingsDialog::changeEvent(QEvent * event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+    }
+}

@@ -30,7 +30,7 @@ MonitorPlot::MonitorPlot(QWidget *parent, std::unique_ptr<SystemMonitor> systemM
         if(it != this->graph(0)->data()->constEnd() && qAbs(it->key - x) < 0.5)
         {
             hoverLabel->position->setCoords(it->key, it->value + 14);
-            hoverLabel->setText(QString("Usage: %1").arg(qRound(it->value)));
+            hoverLabel->setText(tr("Usage: %1%").arg(qRound(it->value)));
             hoverLabel->setVisible(true);
         }
         else
@@ -82,4 +82,5 @@ void MonitorPlot::updatePlot()
 void MonitorPlot::updateTranlation(QString title)
 {
     m_title->setText(title);
+    yAxis->setLabel(tr("Usage %"));;
 }

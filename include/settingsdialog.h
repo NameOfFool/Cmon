@@ -14,7 +14,8 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog();
-
+protected:
+    void changeEvent(QEvent * event) override;
 private:
     Ui::SettingsDialog *ui;
     void initLangs();
